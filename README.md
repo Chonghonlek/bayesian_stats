@@ -10,6 +10,7 @@ The prior and likelihood are used to compute the conditional distribution of $\t
 $$
 P(\theta|y) = \frac{p(\theta,y)}{p(y)} = \frac{p(\theta,y)}{\int p(y,t) dt} = \frac{ p(y|\theta) p(\theta)}{\int p(y|t) p(t) dt}
 $$
+
 If $\theta$ is discrete, the integral will be replaced by a sum over all possible values of $\theta$
 
 Here we can see that $P(\theta|y) \propto P(y|\theta) P(\theta)$
@@ -27,13 +28,12 @@ Baysian statistics provide a formal approach to combine information from differe
 Suppose we have 2 sets of independently collected $y_{1}$ and $y_{2}$.
 The posterior for the full data set is:
 
-$$
 \begin{align*}
-P(\theta|y_{1},y_{2})  &\propto P(y|\theta) P(\theta) \\
-&= P(y_{1}|\theta)P(y_{2}|\theta)P(\theta) \; [y_{1} \:\text{\&} \: y_{2} \:\text{are conditionally independent}] \\
+P(\theta|y_{1},y_{2})  & \propto P(y|\theta) P(\theta) \\
+& = P(y_{1}|\theta)P(y_{2}|\theta)P(\theta) \; [y_{1} \:\text{\&} \: y_{2} \:\text{are conditionally independent}] \\
 & \propto P(y_{2}|\theta)P(\theta|y_{1})
 \end{align*}
-$$
+
 
 We can find the posterior distribution of $\theta$ given $(y_{1},y_{2})$ by treating the posterior $P(\theta|y_{1})$ as the prior distribution of $y_{2}$
 - this can be applied when data arrive sequentially and independently over time
@@ -72,17 +72,18 @@ For any prior distribution, the posterior distribution $p(y|\theta)$ is the same
 
 To find sufficient statistic, we can use this theorem
 
-A statistic t is sufficieint for $\theta$ given y $\iff$ there $\exist \; \text{functions f and g s.t.} \\ p(y|\theta) = f(t,\theta)g(y)$
+A statistic t is sufficieint for $\theta$ given y $\iff$ there $\exists \; \text{functions f and g s.t.} \\ p(y|\theta) = f(t,\theta)g(y)$
 - in binomial model, $f(t,\theta) = \theta^{t}(1-\theta)^{n-t}$ and $g(y) = 1$
 
 ## Interval estimation / Credible Set
 
 A $100(1-\alpha)$% credible set for $\theta$ is a subset of $C$ of $\Theta$ s.t. 
+
 $$
 P(\theta \in C| y) = \int_{C} p(\theta|y) d\theta \ge 1-\alpha
 $$
 
-We used $\ge$ to accoomodate discrete settings as well. In continuous setting, the set will be exact coverage
+We used $\ge$ to accomodate discrete settings as well. In continuous setting, the set will be exact coverage
 
 ### Intepretation of credible sets
 We treat the unknown parameter $\theta$ as a r.v. and the interval is fixed once data is observed
@@ -95,6 +96,8 @@ I.e. if we could recompute $C$ for a large number of data sets collected in same
 
 ### Quantile based / equal-tails intervals
 We find 2 numbers $\theta_{\alpha/2} < \theta_{1 - \alpha/2}$ s.t. 
+
+\usepackage{amsmath}
 $$
 P(\theta < \theta_{\alpha/2}) = \alpha/2 \; \& P(\theta > \theta_{1-\alpha/2}) = \alpha/2 \\
 \implies P(\theta_{\alpha/2}< \theta <\theta_{1-\alpha/2} ) = 1-\alpha
@@ -112,12 +115,12 @@ where $k(\alpha)$ is the largest constant satisfying $P(\theta \in C|y) \ge 1-\a
 
 We can visualise the HPD region, by drawing a horizontal line and pushing it donw until the corresponding values of the $\theta$ - axis trap the appropriate probability
 
-```
+``` r
 library(TeachingDemos)
 hpd(qbeta,shape1 = a, shape = b, conf = 0.90)
 ```
 or
-```
+```r
 library(coda)
 rand_sp = rbeta(10^6,3,9)
 mcmc_obj = mcmc(rand_sp)
@@ -130,12 +133,12 @@ In some cases, no prior information exist or inference based dominantly on the d
 For instance, suppose the parameter space is discrete and finite ie $\Theta = \{\theta_{1},\dotsc,\theta_{n}\}$
 then the distribution $p(\theta_{i}) = 1/n$ does not favour any other value - as such it is a noninformative piror. If we have a bounded continuous paramter space we can use the uniform distribution $p(\theta) = \frac{1}{(b-a)}$
 
-However when the parameter space is unbounded, suppose $\Theta = (-\infin,+\infin)$
+However when the parameter space is unbounded, suppose $\Theta = (-\infty,+\infty)$
 
-We consider a uniform distribution over the real line such that $p(\theta)= c$ for $-\infin < \theta < \infin$
+We consider a uniform distribution over the real line such that $p(\theta)= c$ for $-\infty < \theta < \infty$
 - we use the notation $p(\theta) \propto 1$
 
-This distribution is **improper** as $\int_{-\infin}^{\infin} p(\theta) d\theta = +\infin$ for $\forall\; c>0$
+This distribution is **improper** as $\int_{-\infty}^{\infty} p(\theta) d\theta = +\infty$ for $\forall\; c>0$
 
 Sometimes, an improper prior can be combined with the likelihood to give a proper posterior. proper posteriros will not always result.
 ### Reference Piror
@@ -162,6 +165,7 @@ $$
 If $\theta$ is multi-dimensional, the jeffreys prior is given by $p(\theta) \propto \; \sqrt{\det \{ I(\theta) \}}$
 
 and $I(\theta)$ is the expected Fisher information matrix whose $(i,j)$th entry is :
+
 $$
 \begin{equation*}
 I_{ij}(\theta) = - E_{Y|\theta}[\frac{\partial^2}{\partial \theta_{i} \theta_{j}} \log p(y|\theta)]
