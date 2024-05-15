@@ -3,15 +3,18 @@
 Consider a uniform(0,1) prior such that $p(\theta) = 1$
 
 We can apply bayes rules to get the posterior :
+
 $$
 \begin{align*}
 p(\theta|y) &\propto p(y|\theta)p(\theta) \\
 &\propto \theta^y (1-\theta)^{n-y}
 \end{align*}
 $$
+
 Hence $p(\theta|y) = \frac{\int_{0}^{1} \theta^y (1-\theta)^{n-y} \,d\theta}{C}$ for some normalizing constant C
 
 For $p(\theta|y)$ to be a proper density 
+
 $$
 \int_{0}^{1} p(\theta|y)\,d\theta = \frac{1}{C} \int_{0}^{1}\theta^y (1-\theta)^{n-y} \, d\theta= 1 \\
 \implies C = \int_{0}^{1}\theta^y (1-\theta)^{n-y} \, d\theta
@@ -22,6 +25,7 @@ From calculus we know that $B(a,b) = \int_{0}^{1} \theta^{a-1} (1-\theta)^{b-1} 
 Thus C = $B(y+1,n-y+1)$
 
 Clearly,
+
 $$
 \begin{align*}
 \theta &\sim Uniform(0,1) &\implies \theta|y \sim Beta(y+1,n-y+1) \\
@@ -37,6 +41,7 @@ if $\theta \sim beta(a,b)$
 
 ### In general
 For a beta prior with $\theta \sim Beta(a_{0},b_{0})$ then
+
 $$
 \begin{align*}
 p(\theta|y) &\propto p(y|\theta)p(\theta) \\
@@ -46,6 +51,7 @@ p(\theta|y) &\propto p(y|\theta)p(\theta) \\
 $$
 
 hence, $p(\theta|y)$ has the same shape as pdf of $Beta(a_{0} +y,b_{0} + n -y)$
+
 $$
 \begin{align*}
 \theta &\sim Beta(a_{0},b_{0}) &\implies \theta|y \sim Beta(a_{0} +y,b_{0} + n -y) \\
@@ -55,6 +61,7 @@ $$
 
 ## Combing info
 Recall that $E(\theta|y) = \frac{a+y}{a+y+b+n-y}$
+
 $$
 \begin{align*}
 E(\theta|y) = \frac{a+y}{a+b+n} &= \frac{a+b}{a+b+n}( \frac{a}{a+b}) + \frac{n}{a+b+n}( \frac{y}{n}) \\
