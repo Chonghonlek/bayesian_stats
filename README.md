@@ -33,7 +33,7 @@ The posterior for the full data set is:
 $$
 \begin{align*}
 P(\theta|y_{1},y_{2})  &\propto P(y|\theta) P(\theta) \\
-&= P(y_{1}|\theta)P(y_{2}|\theta)P(\theta) \quad [y_{1} \text{and} \: y_{2} \text{are conditionally independent}] \\
+&= P(y_{1}|\theta)P(y_{2}|\theta)P(\theta) \quad [y_{1} \text{and}  y_{2} \text{are conditionally independent}] \\
 &\propto P(y_{2}|\theta)P(\theta|y_{1})
 \end{align*}
 $$
@@ -65,7 +65,7 @@ Consider $p(\theta) = \alpha P_1(\theta) + (1-\alpha)P_2(\theta)$ where $0 \leq 
 $$
 \begin{aligned}
 P(\theta|y) &= \frac{ p(y|\theta) p(\theta)}{\int p(y|t) p(t) dt} = \frac{ \alpha p(y|\theta) p_1(\theta) + (1-\alpha)p(y|\theta) p_2(\theta)}{\alpha\int p(y|t) p_{1}(t) dt + (1-\alpha)\int p(y|t) p_{2}(t) dt} \\
-&\text{let } m_i(y) = \int p(y|theta)p_i(\theta) d\theta \iff p_i(\theta|y) = \frac{p(y|theta)p_i(\theta)}{m_i(y)}\\
+&\text{let } m_i(y) = \int p(y|\theta)p_i(\theta) d\theta \iff p_i(\theta|y) = \frac{p(y|theta)p_i(\theta)}{m_i(y)}\\
 &= \frac{ \alpha m_1(y) p_1(\theta|y) + (1-\alpha)m_2(y) p_2(\theta|y)}{\alpha m_1(y) + (1-\alpha)m_2(y)}\\
 &= W_1 P_1(\theta|y) + W_2 P_2(\theta|y) \quad \text{where } W_1 = \frac{\alpha m_1(y)}{\alpha m_1(y) + (1-\alpha)m_2(y)}
 \end{aligned}
