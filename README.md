@@ -33,7 +33,7 @@ The posterior for the full data set is:
 $$
 \begin{align*}
 P(\theta|y_{1},y_{2})  &\propto P(y|\theta) P(\theta) \\
-&= P(y_{1}|\theta)P(y_{2}|\theta)P(\theta) \; [y_{1} \:\text{\&} \: y_{2} \:\text{are conditionally independent}] \\
+&= P(y_{1}|\theta)P(y_{2}|\theta)P(\theta) \; [y_{1} \:\text{and} \: y_{2} \:\text{are conditionally independent}] \\
 &\propto P(y_{2}|\theta)P(\theta|y_{1})
 \end{align*}
 $$
@@ -114,7 +114,7 @@ We find 2 numbers $\theta_{\alpha/2} < \theta_{1 - \alpha/2}$ s.t.
 
 
 $$
-P(\theta < \theta_{\alpha/2}) = \alpha/2 \; \& P(\theta > \theta_{1-\alpha/2}) = \alpha/2 \\
+P(\theta < \theta_{\alpha/2}) = \alpha/2 \quad \text{and} \quad P(\theta > \theta_{1-\alpha/2}) = \alpha/2 \\
 \implies P(\theta_{\alpha/2}< \theta <\theta_{1-\alpha/2} ) = 1-\alpha
 $$
 
