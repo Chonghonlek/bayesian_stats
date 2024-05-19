@@ -1,3 +1,5 @@
+Notes taken from **P.D. Hoff, A First Course in Bayesian Statistical Methods**
+
 ## Binomial Model
 
 Consider a uniform(0,1) prior such that $p(\theta) = 1$

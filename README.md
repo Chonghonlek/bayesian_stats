@@ -1,4 +1,6 @@
 # Bayesian_stats
+Notes taken from **P.D. Hoff, A First Course in Bayesian Statistical Methods**
+
 In bayesian stats, we need to specify a sampling model and a prior distribution 
 
 The sampling distribution is a probability distribution that describes how $y$  depends $\theta$  and is expressed as a probbability density function $P(y|\theta)$ - which we call the **likelihood** function
@@ -28,12 +30,13 @@ Baysian statistics provide a formal approach to combine information from differe
 Suppose we have 2 sets of independently collected $y_{1}$ and $y_{2}$.
 The posterior for the full data set is:
 
+$$
 \begin{align*}
-P(\theta|y_{1},y_{2})  & \propto P(y|\theta) P(\theta) \\
-& = P(y_{1}|\theta)P(y_{2}|\theta)P(\theta) \; [y_{1} \:\text{\&} \: y_{2} \:\text{are conditionally independent}] \\
-& \propto P(y_{2}|\theta)P(\theta|y_{1})
+P(\theta|y_{1},y_{2})  &\propto P(y|\theta) P(\theta) \\
+&= P(y_{1}|\theta)P(y_{2}|\theta)P(\theta) \; [y_{1} \:\text{\&} \: y_{2} \:\text{are conditionally independent}] \\
+&\propto P(y_{2}|\theta)P(\theta|y_{1})
 \end{align*}
-
+$$
 
 We can find the posterior distribution of $\theta$ given $(y_{1},y_{2})$ by treating the posterior $P(\theta|y_{1})$ as the prior distribution of $y_{2}$
 - this can be applied when data arrive sequentially and independently over time
@@ -56,6 +59,17 @@ i.e. conjugate prior to a sampling model belong to same family as posterior
 - binomial and beta conjugate 
 - poisson and gamma conjugate
 
+## Mixture of conjugate prior
+Consider $p(\theta) = \alpha P_1(\theta) + (1-\alpha)P_2(\theta)$ where $0 \leq \alpha \leq 1$
+
+$$
+\begin{aligned}
+P(\theta|y) &= \frac{ p(y|\theta) p(\theta)}{\int p(y|t) p(t) dt} = \frac{ \alpha p(y|\theta) p_1(\theta) + (1-\alpha)p(y|\theta) p_2(\theta)}{\alpha\int p(y|t) p_{1}(t) dt + (1-\alpha)\int p(y|t) p_{2}(t) dt} \\
+&\text{let } m_i(y) = \int p(y|theta)p_i(\theta) d\theta \iff p_i(\theta|y) = \frac{p(y|theta)p_i(\theta)}{m_i(y)}\\
+&= \frac{ \alpha m_1(y) p_1(\theta|y) + (1-\alpha)m_2(y) p_2(\theta|y)}{\alpha m_1(y) + (1-\alpha)m_2(y)}\\
+&= W_1 P_1(\theta|y) + W_2 P_2(\theta|y) \quad \text{where } W_1 = \frac{\alpha m_1(y)}{\alpha m_1(y) + (1-\alpha)m_2(y)}
+\end{aligned}
+$$
 
 ## Sufficient statistic
 Let t be a function of observations $y = (y_{1}, \dotsc,y_{n})$
@@ -73,6 +87,7 @@ For any prior distribution, the posterior distribution $p(y|\theta)$ is the same
 To find sufficient statistic, we can use this theorem
 
 A statistic t is sufficieint for $\theta$ given y $\iff$ there $\exists \; \text{functions f and g s.t.} \\ p(y|\theta) = f(t,\theta)g(y)$
+
 - in binomial model, $f(t,\theta) = \theta^{t}(1-\theta)^{n-t}$ and $g(y) = 1$
 
 ## Interval estimation / Credible Set
@@ -97,7 +112,7 @@ I.e. if we could recompute $C$ for a large number of data sets collected in same
 ### Quantile based / equal-tails intervals
 We find 2 numbers $\theta_{\alpha/2} < \theta_{1 - \alpha/2}$ s.t. 
 
-\usepackage{amsmath}
+
 $$
 P(\theta < \theta_{\alpha/2}) = \alpha/2 \; \& P(\theta > \theta_{1-\alpha/2}) = \alpha/2 \\
 \implies P(\theta_{\alpha/2}< \theta <\theta_{1-\alpha/2} ) = 1-\alpha
