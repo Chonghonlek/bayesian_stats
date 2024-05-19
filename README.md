@@ -33,7 +33,7 @@ The posterior for the full data set is:
 $$
 \begin{align*}
 P(\theta|y_{1},y_{2})  &\propto P(y|\theta) P(\theta) \\
-&= P(y_{1}|\theta)P(y_{2}|\theta)P(\theta) \; [y_{1} \:\text{and} \: y_{2} \:\text{are conditionally independent}] \\
+&= P(y_{1}|\theta)P(y_{2}|\theta)P(\theta) \quad [y_{1} \text{and} \: y_{2} \text{are conditionally independent}] \\
 &\propto P(y_{2}|\theta)P(\theta|y_{1})
 \end{align*}
 $$
@@ -123,9 +123,11 @@ $$
 ### Highest Posterior Density (HPD) region
 
 The highest posterior density (HPD) credible set is defined as the set :
+
 $$
 C = \{\theta \in \Theta : p(\theta|y) \ge k(\alpha) \}
 $$
+
 where $k(\alpha)$ is the largest constant satisfying $P(\theta \in C|y) \ge 1-\alpha$
 
 We can visualise the HPD region, by drawing a horizontal line and pushing it donw until the corresponding values of the $\theta$ - axis trap the appropriate probability
